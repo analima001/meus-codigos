@@ -1,0 +1,12 @@
+create table loja(
+id serial primary key,
+nome varchar(150),
+preco decimal(10,2),
+disponivel boolean
+);
+insert into loja( nome, preco, disponivel) values
+('celular',2500.00,true),
+('fone',200.00,true),
+('teclado',150.00,false),
+('mouse',80.00,false);
+select*from loja;
