@@ -1,0 +1,63 @@
+import pandas as pd
+tabela = pd.read_csv("cancelamentos.csv")
+display(tabela) 
+
+# passo2- visuzlizar a base de dados
+  # - entender as informaçoes disponiveis
+  # - erros/problemas na base de dados
+
+tabela=tabela.drop(columns="CustomerID")
+display(tabela)
+
+
+
+#passo3- corrigir os problemas na base de dados( tratamento  de dados)
+display(tabela.info())
+#valore em formatos errados
+#informcaçoes vazias
+tabela= tabela.dropna()
+display(tabela.info())
+
+#passo4- analise inicial(qnts cliente cancelaram)
+#quantidade
+display(tabela["cancelou"].value_counts())
+
+#porcetagem
+display(tabela["cancelou"].value_counts(normalize=True))
+
+
+import plotly.express as px
+display(tabela.columns)
+
+for coluna in tabela.columns:
+    grafico= px.histogram(tabela, x=coluna, color="cancelou",text_auto=True)
+    grafico.show()
+
+
+# todos do contrato mensal cancelou
+  # desconto no contrato anual, trimestral
+
+# ligacoes_callcenteer acima de 4 cancelou
+  #tem algum problema n resolvido
+  # se o cliente ligar 3x pro callcenter, alerta vermelho
+
+# atraso no pagamento acima de 20 dias o cliente cancela
+  #se o cliente atrasar 15 dias , alerta vermelho
+# cancelamento =56%
+
+#todos os clientes que gastam menos de 500 reais cancelaram
+#filtrar a base de dados
+
+
+#duracao_contrato difertente de monthly
+condicao = tabela["duracao_contrato"] != "monthly"
+tabela=tabela[condicao]
+#ligacoes_callcenter <= 4
+condicao= tabela["ligacoes_callcenter"] <=4
+tabela=tabela[condicao]
+#dias_atraso >=20
+condicao= tabela["dias_atraso"] <=20
+tabela= tabela[condicao]
+
+display(tabela["cancelou"]. value_counts(normalize=True))
+
