@@ -1,0 +1,108 @@
+import pandas as pd
+#def nome_da_funcao(paraemtro)
+    #instrucao1
+    #intrucao2
+    #....
+    #return valor(opciconal)
+
+
+def calcular_imposto(valor):
+    if valor >= 4664.68:
+        imposto = valor * 0.275
+
+    elif valor >= 3751.06:
+        imposto = valor * 0.225
+
+    elif valor >= 2826.66:
+        imposto = valor * 0.15
+
+    elif valor >= 2428.81:
+        imposto = valor * 0.075
+
+    else:
+        imposto = 0
+    return imposto
+
+renda_caio=6000
+renda_igor=2422
+renda_macedo=8635.88
+renda_jonnhy=1426
+renda_fabio=5000
+
+imposto_produto_1= calcular_imposto(renda_caio)
+
+imposto_produto1= calcular_imposto(renda_jonnhy)
+imposto_produto2= calcular_imposto(renda_caio)
+imposto_produto3= calcular_imposto(renda_macedo)
+imposto_produto4= calcular_imposto(renda_fabio)
+imposto_produto5= calcular_imposto(renda_igor)
+
+#Salário mensal	Imposto
+#Até R$ 2.428,80	Isento
+# $ 2.428,81 	7,5%
+# $ 2.826,66 	15%
+# $ 3.751,06 	22,5%
+#acima de R$ 4.664,68	27,5%
+
+
+print("imposto:")
+print(f"Tributo/Jonnhy: ${imposto_produto1:.2f}")
+print(f"Tributo/Caio: ${imposto_produto2:.2f}")
+print(f"Tributo/Macedo: ${imposto_produto3:.2f}")
+print(f"Tributo:/Fabio ${imposto_produto4:.2f}")
+print(f"Tributo/Igor: ${imposto_produto5:.2f}")
+
+print("")
+
+print(f"Renda Jonnhy:{renda_jonnhy}")
+print(f"Renda Caio:{renda_caio}")
+print(f"Renda Macedo:{renda_macedo}")
+print(f"Renda Fabio{renda_fabio}")
+print(f"Renda Igor:{renda_igor}")
+valor_f_jonnhy= renda_jonnhy - imposto_produto1
+valor_f_caio= renda_caio - imposto_produto2
+valor_f_macedo= renda_macedo - imposto_produto3
+valor_f_fabio= renda_fabio - imposto_produto4
+valor_f_igor= renda_igor - imposto_produto5
+
+print("")
+
+print(f"Renda após desconto tributario: ${valor_f_jonnhy:.2f}... Prazado Jonnhy Soares")
+print(f"Renda após desconto tributario: ${valor_f_caio:.2f}... Prazado Caio Ricahrd Silva")
+print(f"Renda após desconto tributario: ${valor_f_macedo:.2f}... Prazado Macedo Lopes")
+print(f"Renda após desconto tributario: ${valor_f_fabio:.2f}... Prazado Fabio Lima")
+print(f"Renda após desconto tributario: ${valor_f_igor:.2f}... Prazdado Igor Bandeira")
+print("")
+dados = {
+      "NOME" : [
+        "Jonnhy Soares",
+        "Caio Richard Silva",
+        "Macedo Lopes",
+        "Fabio Lima",
+        "Igor Bandeira"
+    ],
+    "RENDA INICIAL": [
+        "$1426.00",
+        "$6000.00",
+        "$8635.88",
+        "$5000.00",
+        "$2422"
+    ],
+    
+    "valor do tributo" :[
+        imposto_produto1,
+        imposto_produto2,
+        imposto_produto3,
+        imposto_produto4,
+        imposto_produto5
+    ],
+    "Renda Final" : [
+        valor_f_jonnhy,
+        valor_f_caio,
+        valor_f_macedo,
+        valor_f_fabio,
+        valor_f_igor
+    ]
+}
+tabela_1= pd.DataFrame(dados)
+print(tabela_1)
