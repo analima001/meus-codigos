@@ -1,0 +1,70 @@
+import random
+
+# cadastro do funcionario no sistema
+print("=== SISTEMA DE REGISTRO DE PONTO ===")
+nome_funcionario= input("Nome completo do funcionário: ")
+cargo_funcionario= input("Cargo: ")
+cpf_funcionario= int(input("CPF: "))
+numero_matricula= random.randint(10000,50000)
+
+# exibir informações do funcionario
+print("=== FUNCIONÁRIO CADASTRADO ===")
+print(f"Nome: {nome_funcionario}")
+print(f"Cargo: {cargo_funcionario}")
+print(f"CPF: {cpf_funcionario}")
+print(f"Matricula gerada: {numero_matricula}")
+
+print("")
+
+#registro de ponto
+digite_matricula=int(input("Informe o numero da sua matricula: "))
+while digite_matricula != numero_matricula:
+    print("Tente novamente")
+    digite_matricula=int(input("Informe o numero da sua matricula: "))
+
+print("=== LOGIN REALIZADO COM SUCESSO ===")
+entrada_funcionario= input("Entrada:(HH:MM):  ")
+saida_funcionario= input("Saída almoço:(HH:MM): ")
+volta_funcionario= input("Volta almoço:(HH:MM): ")
+saida_final_funcionario= input("Saída final:(HH:MM): ")
+
+print("")
+erro = False
+
+with open("erros.txt", "a", encoding="utf-8") as arquivo:
+    if not "08:00" <= entrada_funcionario <= "08:05":
+        erro = True
+        arquivo.write(
+        f"Matrícula {numero_matricula} - {nome_funcionario} - Entrada fora do horário: {entrada_funcionario}\n"
+    )
+
+    if not "12:00" <= saida_funcionario <= "12:05":
+        erro = True
+        arquivo.write(
+        f"Matrícula {numero_matricula} - {nome_funcionario} - Saída para almoço fora do horário: {saida_funcionario}\n"
+    )
+
+    if not "13:00" <= volta_funcionario <= "13:05":
+        erro = True
+        arquivo.write(
+        f"Matrícula {numero_matricula} - {nome_funcionario} - Volta para almoço fora do horário: {volta_funcionario}\n"
+    )
+
+    if not "15:00" <= saida_final_funcionario <= "15:05":
+        erro = True
+        arquivo.write(
+        f"Matrícula {numero_matricula} - {nome_funcionario} -Saída fora do horário: {saida_final_funcionario}\n"
+    )
+
+if erro:
+    print("Foram encontradas inconsistências no ponto.")
+else:
+    print("Ponto registrado com sucesso.")
+
+
+print("=== RELATÓRIO DE PONTO ===")
+print(f"Entrada: {entrada_funcionario} ")
+print(f"Saída almoço: {saida_funcionario} ")
+print(f"Volta almoço: {volta_funcionario} ")
+print(f"Saída final: {saida_final_funcionario}")
+
