@@ -1,0 +1,57 @@
+print("==========================")
+print("     BANCO SANTANDER       ")
+print("==========================")
+
+cod_agen=input("Agência: ")
+while cod_agen != "037":
+    print("Acesso Negado")
+    cod_agen=input("Agência: ")
+    if cod_agen == "037":
+        print("Acesso Liberado")
+        break
+
+saldo=2306.35
+ultima_operacao = "Nenhuma operação realizada."
+
+while True:
+    opc_= int(input("O que deseja realizar:\n 1- Consultar Saldo \n 2 - Depositar \n 3- Sacar \n 4- Imprimir extrato \n 5- Sair: "))
+    if opc_ == 1:
+        print("")
+        print(f"Saldo: R${saldo:.2f}\n")
+        ultima_operacao = "Consulta de saldo"
+
+    elif opc_ == 2:
+        print("")
+        deposito=float(input("Valor do deposito: "))
+        saldo += deposito
+        print(f"Saldo Atual: R${saldo:.2f}\n")
+        ultima_operacao = f"Depósito de R$ {deposito:.2f}"
+
+    elif opc_ == 3:
+        print("")
+        saque=float(input("Valor do Saque: "))
+        if saldo >= saque:
+            saldo -= saque
+            print(f"Saldo atual:{saldo:.2f}\n") 
+            ultima_operacao = f"Saque de R$ {saque:.2f}"
+        else:
+            print("")
+            print("*Saque indisponível*\n")
+
+    elif opc_ == 4:
+        print("=======BANCO-SANTANDER======")
+        print("")
+        print("Agência: 037")
+        print("Conta:37689562-9")
+        print("")
+        print("Cliente Master -ANA LUIZA LIMA")
+        print(f"Saldo: R${saldo:.2f}")
+        print(f"Ultima operação: {ultima_operacao}")
+        print("         31/07/2026   ")
+        print("=============BS=============")
+    elif opc_ == 5:
+        ("Obrigada pela preferência\n")
+        break
+
+    else:
+        print("Serviço indisponível no momento. \n Tente novamente")    
